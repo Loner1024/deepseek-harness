@@ -1039,7 +1039,7 @@ export type PiAiModelOverride = Omit<PiAiModelProfile, 'id'>
  * Reasoning-dispatch compatibility switches, set on the route (its models'
  * default) or per model (winning over the route). Only the switches pi-ai's
  * reasoning dispatch reads are offered; the rest of pi-ai's compat surface
- * keeps its baseURL-derived auto-detection. pi-ai types both fields only on
+ * keeps its baseURL-derived auto-detection. pi-ai types these fields only on
  * `OpenAICompletionsCompat` — the other wire protocols define their reasoning
  * fields in the protocol itself — so resolution rejects a model-level switch
  * anywhere else, while a route-level default skips past models it cannot fit.
@@ -1049,6 +1049,11 @@ export interface PiAiCompatProfile {
   thinkingFormat?: PiAiThinkingFormat
   /** Whether the endpoint accepts `reasoning_effort`; absent keeps the catalog entry's, then pi-ai's baseURL-derived guess. */
   supportsReasoningEffort?: boolean
+  /**
+   * Whether the endpoint accepts the `developer` role for reasoning models;
+   * absent keeps the catalog entry's, then pi-ai's baseURL-derived guess.
+   */
+  supportsDeveloperRole?: boolean
 }
 
 /** One request modality a pi-ai model may accept. */
